@@ -1,4 +1,8 @@
-export function classNames(className: string, mods: Record<string, string | boolean> = {}, additional: string[] = []): string {
+export function classNames(
+    className: string,
+    mods: Record<string, string | boolean> = {},
+    additional: string[] = [],
+): string {
     return [
         className,
         ...Object.entries(mods)
@@ -6,5 +10,5 @@ export function classNames(className: string, mods: Record<string, string | bool
             .map(([key]) => key),
         ...additional.filter(Boolean),
     ]
-            .join(' ');
-};
+        .join(' ');
+}

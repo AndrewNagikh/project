@@ -1,5 +1,5 @@
-import { ResolveOptions } from "webpack";
-import { BuildOptions } from "./types/config";
+import { ResolveOptions } from 'webpack';
+import { BuildOptions } from './types/config';
 
 export function buildResolvers(option: BuildOptions): ResolveOptions {
     return {
@@ -8,5 +8,5 @@ export function buildResolvers(option: BuildOptions): ResolveOptions {
         modules: [option.paths.src, 'node_modules'],
         alias: {},
         mainFiles: ['index'],
-      }
+    };
 }
