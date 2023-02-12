@@ -1,5 +1,7 @@
 {
     "Lang": "Language",
+    "SomeError": "Something went wrong",
+    "ReloadPage": "Reload Page",
     "Links": {
         "Main": "Main",
         "About": "About"
