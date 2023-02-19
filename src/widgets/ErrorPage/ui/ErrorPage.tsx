@@ -1,29 +1,26 @@
-/* eslint-disable no-restricted-globals */
-import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppButtons } from 'shared/ui/AppButtons/AppButtons';
+import { useTranslation } from 'react-i18next';
+import { Button } from 'shared/ui/Button/Button';
 import cls from './ErrorPage.module.scss';
 
 interface ErrorPageProps {
     className?: string;
 }
 
-const ErrorPage: FC<ErrorPageProps> = ({ className }) => {
+export const ErrorPage = ({ className }: ErrorPageProps) => {
     const { t } = useTranslation();
-    const reload = () => {
+
+    const reloadPage = () => {
+        // eslint-disable-next-line no-restricted-globals
         location.reload();
     };
+
     return (
         <div className={classNames(cls.ErrorPage, {}, [className])}>
-            <p>
-                {t('SomeError')}
-            </p>
-            <AppButtons onClick={reload}>
-                {t('ReloadPage')}
-            </AppButtons>
+            <p>{t('Произошла непредвиденная ошибка')}</p>
+            <Button onClick={reloadPage}>
+                {t('Обновить страницу')}
+            </Button>
         </div>
     );
 };
-
-export default ErrorPage;

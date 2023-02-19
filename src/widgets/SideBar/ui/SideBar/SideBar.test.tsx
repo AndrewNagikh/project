@@ -1,15 +1,17 @@
-import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
-import { renderWitchTranslation } from 'shared/lib/tetsts/renderWitchTranslation/renderWitchTranslation';
-import { SideBar } from './SideBar';
+import { Sidebar } from 'widgets/Sidebar/ui/Sidebar/Sidebar';
+import {
+    renderWithTranslation,
+} from 'shared/lib/tests/renderWithTranslation/renderWithTranslation';
 
-describe('SideBar.test Test', () => {
-    test('SideBar.test case#1', () => {
-        renderWitchTranslation(<SideBar />);
+describe('Sidebar', () => {
+    test('with only first param', () => {
+        renderWithTranslation(<Sidebar />);
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     });
-    test('SideBar.test to be collapsed', () => {
-        renderWitchTranslation(<SideBar />);
+
+    test('test toggle', () => {
+        renderWithTranslation(<Sidebar />);
         const toggleBtn = screen.getByTestId('sidebar-toggle');
         expect(screen.getByTestId('sidebar')).toBeInTheDocument();
         fireEvent.click(toggleBtn);

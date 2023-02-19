@@ -1,23 +1,40 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 
 describe('classNames', () => {
-    test('witch first param', () => {
+    test('with only first param', () => {
         expect(classNames('someClass')).toBe('someClass');
     });
-    test('witch add param', () => {
-        expect(classNames('someClass', {}, ['class1', 'class2', 'class3']))
-            .toBe('someClass class1 class2 class3');
+
+    test('with additional class', () => {
+        const expected = 'someClass class1 class2';
+        expect(classNames('someClass', {}, ['class1', 'class2']))
+            .toBe(expected);
     });
-    test('witch mode param', () => {
-        expect(classNames('someClass', { hovered: true, scrolabble: true }, []))
-            .toBe('someClass hovered scrolabble');
+
+    test('with mods', () => {
+        const expected = 'someClass class1 class2 hovered scrollable';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: true },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
-    test('witch mode false param', () => {
-        expect(classNames('someClass', { hovered: true, scrolabble: false }, []))
-            .toBe('someClass hovered');
+
+    test('with mods false', () => {
+        const expected = 'someClass class1 class2 hovered';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: false },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
-    test('witch mode undefined param', () => {
-        expect(classNames('someClass', { hovered: true, scrolabble: undefined }, []))
-            .toBe('someClass hovered');
+
+    test('with mods undefined', () => {
+        const expected = 'someClass class1 class2 hovered';
+        expect(classNames(
+            'someClass',
+            { hovered: true, scrollable: undefined },
+            ['class1', 'class2'],
+        )).toBe(expected);
     });
 });

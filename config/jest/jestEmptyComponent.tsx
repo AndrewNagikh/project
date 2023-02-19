@@ -1,11 +1,7 @@
-import React, { FC } from 'react';
+import React from 'react';
 
-interface jestEmptyComponentProps {
-
-}
-
-const jestEmptyComponent: FC<jestEmptyComponentProps> = (props) => (
-    <div />
-);
+const jestEmptyComponent = function () {
+    return <div />;
+};
 
 export default jestEmptyComponent;
