@@ -24,7 +24,7 @@
     background-color: var(--bg-color);
     transition: 0.3s transform;
     transform: scale(0.5);
-    min-width: 60%;
+    width: 60%;
 }
 
 .opened {
@@ -33,5 +33,11 @@
 
     .content {
         transform: scale(1);
+    }
+}
+
+.closed {
+    .content {
+        transform: scale(0.2);
     }
 }
