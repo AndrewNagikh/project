@@ -1,5 +1,4 @@
-/* eslint-disable max-len */
-import React, { FC, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 interface PortalProps {
@@ -7,6 +6,11 @@ interface PortalProps {
     element?: HTMLElement;
 }
 
-const Portal: FC<PortalProps> = ({ children, element = document.body }) => createPortal(children, element);
+export const Portal = (props: PortalProps) => {
+    const {
+        children,
+        element = document.body,
+    } = props;
 
-export default Portal;
+    return createPortal(children, element);
+};
