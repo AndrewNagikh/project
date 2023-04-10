@@ -1,13 +1,18 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTheme } from 'app/providers/ThemeProvider';
 import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
+import { userActions } from 'entities/User';
+import { useAppDispatch } from './providers/StoreProvider/config/store';
 
 function App() {
     const { theme } = useTheme();
-
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(userActions.initAuthData());
+    }, [dispatch]);
     return (
         <div className={classNames('app', {}, [theme])}>
             <Suspense fallback="">

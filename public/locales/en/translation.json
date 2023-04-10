@@ -12,6 +12,8 @@
   "О сайте": "About us",
   "Короткий язык": "EN",
   "Войти": "Sign in",
+  "Выйти": "Logout",
   "Логин": "Login",
-  "Пароль": "Password"
+  "Пароль": "Password",
+  "Авторизация": "Authorization"
 }

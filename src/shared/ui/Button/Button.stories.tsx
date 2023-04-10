@@ -93,3 +93,9 @@ SquareSizeXl.args = {
     square: true,
     size: ButtonSize.XL,
 };
+export const Loading = Template.bind({});
+Loading.args = {
+    children: '>',
+    theme: ButtonTheme.OUTLINE,
+    loading: true,
+};
