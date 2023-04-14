@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { ReduxDecorator } from 'shared/config/storybook/ReduxDecorator/ReduxDecorator';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import LoginForm from './LoginForm';
 
 export default {
@@ -12,7 +12,7 @@ export default {
 const Template: ComponentStory<typeof LoginForm> = (args) => <LoginForm {...args} />;
 
 export const LoginFormPrimary = Template.bind({});
-LoginFormPrimary.decorators = [ReduxDecorator({
+LoginFormPrimary.decorators = [StoreDecorator({
     username: {
         username: '123',
         password: '123',
