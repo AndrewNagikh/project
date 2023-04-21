@@ -5,5 +5,15 @@
             "username": "admin",
             "password": "kcadmin"
         }
-    ]
+    ],
+    "profile": {
+        "firstname": "Andrew",
+        "lastname": "Nagikh",
+        "age": 27,
+        "country": "Russia",
+        "currency": "RUB",
+        "city": "Moscow",
+        "username": "admin",
+        "avatar": "https://freegametips.com/wp-content/uploads/2020/01/1579098916_Geralt-de-Rivia-The-Witcher-the-legendary-wizard-of-the-1024x576.jpg"
+    }
 }

@@ -20,6 +20,7 @@ import cls from './LoginForm.module.scss';
 
 export interface LoginFormProps {
     className?: string;
+    onSuccess: () => void;
 }
 const initialReducers: ReducesList = {
     username: loginReducer,
@@ -28,22 +29,31 @@ const initialReducers: ReducesList = {
 const LoginForm: FC<LoginFormProps> = memo((props: LoginFormProps) => {
     const {
         className,
+        onSuccess,
     } = props;
     const dispatch = useAppDispatch();
     const { t } = useTranslation();
+
     const username = useAppSelector(getUserName);
     const password = useAppSelector(getUserPassword);
     const error = useAppSelector(getUserError);
     const isLoading = useAppSelector(getUserIsLoading);
+
     const onLoginChange = useCallback((value: string) => {
         dispatch(loginActions.setLogin(value));
     }, [dispatch]);
+
     const onPassChange = useCallback((value: string) => {
         dispatch(loginActions.setPassword(value));
     }, [dispatch]);
-    const onSignInClick = useCallback(() => {
-        dispatch(fetchByLogin({ username, password }));
-    }, [dispatch, username, password]);
+
+    const onSignInClick = useCallback(async () => {
+        const result = await dispatch(fetchByLogin({ username, password }));
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess();
+        }
+    }, [onSuccess, dispatch, username, password]);
+
     return (
         <ModuleLoader
             reducers={initialReducers}

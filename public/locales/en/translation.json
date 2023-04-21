@@ -15,5 +15,6 @@
   "Выйти": "Logout",
   "Логин": "Login",
   "Пароль": "Password",
-  "Авторизация": "Authorization"
+  "Авторизация": "Authorization",
+  "Профиль": "Profile"
 }

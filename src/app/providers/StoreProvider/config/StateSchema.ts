@@ -3,10 +3,12 @@ import {
 } from '@reduxjs/toolkit';
 import { UserShema } from 'entities/User';
 import { LoginSchema } from 'features/authbyusername';
+import { ProfileSchema } from 'pages/ProfilePage/model/types/ProfileTypes';
 
 export interface StateSchema {
-    user: UserShema
-    username?: LoginSchema
+    user: UserShema;
+    username?: LoginSchema;
+    profile?: ProfileSchema;
 }
 export type StateSchemaKeys = keyof StateSchema;
 
