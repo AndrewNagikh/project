@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Modal } from 'shared/ui/Modal/Modal';
 import React, { memo, useCallback, useState } from 'react';
 import { Button, ButtonTheme } from 'shared/ui/Button/Button';
-import { LoginModal } from 'features/AuthByUserName';
+import { LoginModal } from 'features/loginByUserName';
 import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider/config/store';
 import { getUserAuthData, userActions } from 'entities/User';
 import cls from './Navbar.module.scss';
