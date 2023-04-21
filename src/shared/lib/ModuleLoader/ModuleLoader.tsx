@@ -2,7 +2,7 @@ import { Reducer } from '@reduxjs/toolkit';
 import { ReduxStoreWithManager } from 'app/providers/StoreProvider';
 import { StateSchemaKeys } from 'app/providers/StoreProvider/config/StateSchema';
 import { useAppDispatch } from 'app/providers/StoreProvider/config/store';
-import { loginReducer } from 'features/authbyusername/model/slice/loginSlice';
+import { loginReducer } from 'features/AuthByUserName/model/slice/loginSlice';
 import React, { FC, useEffect } from 'react';
 import { useStore } from 'react-redux';
 
