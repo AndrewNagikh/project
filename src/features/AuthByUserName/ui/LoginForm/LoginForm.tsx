@@ -9,7 +9,7 @@ import Text, { TextTheme } from 'shared/ui/Text/Text';
 import { useAppDispatch, useAppSelector } from 'app/providers/StoreProvider/config/store';
 import ModuleLoader, { ReducesList } from 'shared/lib/ModuleLoader/ModuleLoader';
 import { loginActions, loginReducer } from '../../model/slice/loginSlice';
-import { fetchByLogin } from '../../model/services/loginByUsername/loginByUserName';
+import { fetchByLogin } from '../../model/services/loginByUserName/loginByUserName';
 import {
     getUserName,
     getUserPassword,
