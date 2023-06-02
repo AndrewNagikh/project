@@ -1,11 +1,12 @@
-import { userReducer, userActions } from './model/slice/userSlice';
-import { User, UserShema } from './model/types/user';
-import { getUserAuthData } from './model/selectors/getUserAuthData';
+export {
+    getUserAuthData,
+} from './model/selectors/getUserAuthData/getUserAuthData';
 
 export {
     userReducer,
     userActions,
+} from './model/slice/userSlice';
+export {
+    UserSchema,
     User,
-    UserShema,
-    getUserAuthData,
-};
+} from './model/types/user';

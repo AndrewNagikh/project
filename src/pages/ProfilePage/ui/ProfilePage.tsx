@@ -1,27 +1,33 @@
-import React, { FC } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import ModuleLoader from 'shared/lib/ModuleLoader/ModuleLoader';
-import { profileRedcer } from '../model/slice/profileSlice';
+import { useTranslation } from 'react-i18next';
+import { DynamicModuleLoader, ReducersList }
+    from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { fetchProfileData, ProfileCard, profileReducer } from 'entities/Profile';
+import { useEffect } from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 
-interface ProfilePageProps {
-    className?: string
-}
-
-const reducer: ReducersList = {
-    profile: profileRedcer,
+const reducers: ReducersList = {
+    profile: profileReducer,
 };
 
-const ProfilePage: FC<ProfilePageProps> = (props) => {
-    const { className } = props;
+interface ProfilePageProps {
+    className?: string;
+}
+
+const ProfilePage = ({ className }: ProfilePageProps) => {
     const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProfileData());
+    }, [dispatch]);
+
     return (
-        <ModuleLoader reducers={reducer} removeAfterUnmount>
+        <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <div className={classNames('', {}, [className])}>
-                {t('ProfilePage')}
+                <ProfileCard />
             </div>
-        </ModuleLoader>
+        </DynamicModuleLoader>
     );
 };
 

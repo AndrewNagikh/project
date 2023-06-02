@@ -1,28 +1,44 @@
 import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
-import { useDispatch, TypedUseSelectorHook, useSelector } from 'react-redux';
+import { $api } from 'shared/api/api';
+import { To } from 'history';
+import { NavigateOptions } from 'react-router';
+import { CombinedState, Reducer } from 'redux';
+import { StateSchema, ThunkExtraArg } from './StateSchema';
 import { createReducerManager } from './reducerManager';
-import { StateSchema } from './StateSchema';
 
-export function createReduxStore(initialState?: StateSchema) {
-    const reducer: ReducersMapObject<StateSchema> = {
+export function createReduxStore(
+    initialState?: StateSchema,
+    asyncReducers?: ReducersMapObject<StateSchema>,
+    navigate?: (to: To, options?: NavigateOptions) => void,
+) {
+    const rootReducers: ReducersMapObject<StateSchema> = {
+        ...asyncReducers,
         user: userReducer,
     };
-    const reducerManager = createReducerManager(reducer);
-    const store = configureStore<StateSchema>({
-        reducer: reducerManager.reduce,
+
+    const reducerManager = createReducerManager(rootReducers);
+
+    const extraArg: ThunkExtraArg = {
+        api: $api,
+        navigate,
+    };
+
+    const store = configureStore({
+        reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
         devTools: __IS_DEV__,
         preloadedState: initialState,
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+            thunk: {
+                extraArgument: extraArg,
+            },
+        }),
     });
+
     // @ts-ignore
     store.reducerManager = reducerManager;
+
     return store;
 }
 
-export const store = createReduxStore({} as StateSchema);
-
-type RootState = ReturnType<typeof store.getState>
-type AppDispatch = typeof store.dispatch
-
-export const useAppDispatch = () => useDispatch<AppDispatch>();
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];

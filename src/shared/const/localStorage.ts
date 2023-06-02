@@ -1,1 +1,1 @@
-export const USER_KEY = 'key';
+export const USER_LOCALSTORAGE_KEY = 'user';
