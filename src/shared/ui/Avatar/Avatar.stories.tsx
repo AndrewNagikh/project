@@ -7,6 +7,7 @@ import Avatar from './Avatar';
 
 export default {
     component: Avatar,
+    title: 'shared/Avater',
     parameters: {
         viewport: {
             viewports: INITIAL_VIEWPORTS,

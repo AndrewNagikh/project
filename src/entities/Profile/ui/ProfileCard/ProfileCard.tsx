@@ -5,6 +5,9 @@ import { Input } from 'shared/ui/Input/Input';
 import { Profile } from 'entities/Profile/model/types/profile';
 import { Loader } from 'shared/ui/Loader/Loader';
 import Avatar from 'shared/ui/Avatar/Avatar';
+import Select from 'shared/ui/Select/Select';
+import { CurrencySelect } from 'entities/Currency';
+import { CountrySelect } from 'entities/Country';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -70,19 +73,17 @@ export const ProfileCard = ({
                     readonly={readonly}
                     type="number"
                 />
-                <Input
+                <CurrencySelect
                     value={data?.currency}
-                    placeholder={t('Валюта')}
                     className={cls.input}
+                    disabled={readonly}
                     onChange={onFieldChange('currency')}
-                    readonly={readonly}
                 />
-                <Input
+                <CountrySelect
                     value={data?.country}
-                    placeholder={t('Страна')}
                     className={cls.input}
                     onChange={onFieldChange('country')}
-                    readonly={readonly}
+                    disabled={readonly}
                 />
                 <Input
                     value={data?.city}
