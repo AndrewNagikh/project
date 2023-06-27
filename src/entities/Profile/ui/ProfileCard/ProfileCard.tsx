@@ -8,6 +8,9 @@ import Avatar from 'shared/ui/Avatar/Avatar';
 import Select from 'shared/ui/Select/Select';
 import { CurrencySelect } from 'entities/Currency';
 import { CountrySelect } from 'entities/Country';
+import { useSelector } from 'react-redux';
+// eslint-disable-next-line max-len
+import { getValidateProfileErrors } from '../../model/selectors/getValidateProfileErrors/getValidateProfileErrors';
 import cls from './ProfileCard.module.scss';
 
 interface ProfileCardProps {
@@ -23,6 +26,7 @@ export const ProfileCard = ({
     className, data, isLoading, error, onFieldChange, readonly,
 }: ProfileCardProps) => {
     const { t } = useTranslation('profile');
+    const validateErrors = useSelector(getValidateProfileErrors);
     if (isLoading) {
         return (
             <div className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>
@@ -30,7 +34,7 @@ export const ProfileCard = ({
             </div>
         );
     }
-    if (error) {
+    if (error && !validateErrors) {
         return (
             <div className={classNames(cls.ProfileCard, { [cls.error]: true }, [className])}>
                 <Text
@@ -51,6 +55,14 @@ export const ProfileCard = ({
                 <div className={cls.avatar}>
                     <Avatar src={data?.avatar} />
                 </div>
+                {validateErrors && validateErrors
+                    .split('\n').map((item) => (
+                        <Text
+                            key={item}
+                            theme={TextTheme.ERROR}
+                            text={item}
+                        />
+                    ))}
                 <Input
                     value={data?.first}
                     placeholder={t('Ваше имя')}

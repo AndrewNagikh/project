@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 
 import { ComponentStory } from '@storybook/react';
 import React from 'react';
@@ -9,12 +8,6 @@ import Select from './Select';
 export default {
     component: Select,
     title: 'shared/Select',
-    parameters: {
-        viewport: {
-            viewports: INITIAL_VIEWPORTS,
-            defaultViewport: 'desctop',
-        },
-    },
 };
 
 const Template: ComponentStory<typeof Select> = (args) => (

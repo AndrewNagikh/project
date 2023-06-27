@@ -3,6 +3,8 @@ import { AxiosInstance } from 'axios';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { Profile } from '../../types/profile';
 import { getProfileForm } from '../../selectors/getProfileForm/getProfileForm';
+import validateProfile from '../validateProfile/validateProfile';
+import { profileActions } from '../../slice/profileSlice';
 
 export const updateProfileData = createAsyncThunk<
     Profile,
@@ -15,8 +17,11 @@ export const updateProfileData = createAsyncThunk<
             const formData = getProfileForm(getState());
 
             try {
+                const validate = validateProfile(formData);
+                if (validate) {
+                    return rejectWithValue(validate);
+                }
                 const response = await extra.api.put<Profile>('/profile', formData);
-
                 return response.data;
             } catch (e) {
                 console.log(e);

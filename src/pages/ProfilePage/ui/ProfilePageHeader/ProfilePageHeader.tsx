@@ -20,7 +20,6 @@ const ProfilePageHeader: FC = () => {
     }, [dispatch]);
     const onSaveProfile = useCallback(() => {
         dispatch(updateProfileData());
-        dispatch(profileActions.cancelEdit());
     }, [dispatch]);
     return (
         <div className={classNames(cls.ProfilePageHeader)}>

@@ -1,5 +1,3 @@
-import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
-
 import { ComponentStory } from '@storybook/react';
 import React from 'react';
 
@@ -8,12 +6,6 @@ import Avatar from './Avatar';
 export default {
     component: Avatar,
     title: 'shared/Avater',
-    parameters: {
-        viewport: {
-            viewports: INITIAL_VIEWPORTS,
-            defaultViewport: 'desctop',
-        },
-    },
 };
 
 const Template: ComponentStory<typeof Avatar> = (args) => (
