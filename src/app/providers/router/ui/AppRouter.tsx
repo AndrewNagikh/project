@@ -7,7 +7,10 @@ import { PageLoader } from 'shared/ui/PageLoader/PageLoader';
 const AppRouter = () => (
     <Routes>
         {Object.values(routeConfig).map(({ element, path }) => {
-            if (path === RoutePath.profile) {
+            const isAuthRutes = path === RoutePath.profile
+            || path === RoutePath.article
+            || path === RoutePath['article-details'];
+            if (isAuthRutes) {
                 return (
                     <Route
                         key={path}

@@ -3,11 +3,15 @@ import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
+import ArticlePage from 'pages/ArticlePage';
+import ArticleDetailPage from 'pages/ArticalDetailPage';
 
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
     PROFILE = 'profile',
+    ARTICLE = 'article',
+    ARTICLE_DEATILS = 'article-details',
     // last
     NOT_FOUND = 'not_found',
 }
@@ -16,6 +20,8 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
     [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.ARTICLE]: '/article',
+    [AppRoutes.ARTICLE_DEATILS]: '/article-details/',
     // последний
     [AppRoutes.NOT_FOUND]: '*',
 };
@@ -32,6 +38,14 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
     [AppRoutes.PROFILE]: {
         path: RoutePath.profile,
         element: <ProfilePage />,
+    },
+    [AppRoutes.ARTICLE]: {
+        path: RoutePath.article,
+        element: <ArticlePage />,
+    },
+    [AppRoutes.ARTICLE_DEATILS]: {
+        path: `${RoutePath['article-details']}:id`,
+        element: <ArticleDetailPage />,
     },
     // last
     [AppRoutes.NOT_FOUND]: {
