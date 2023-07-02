@@ -1,3 +1,7 @@
 {
-    "Статьи": "Articles"
+    "Статьи": "Articles",
+    "Статья не найдена": "Article not found",
+    "Ошибка загрузки статьи": "Article load error",
+    "Копировать": "Copy",
+    "Скопировано": "Copied"
 }

@@ -7,6 +7,7 @@ import ArticlePage from './ArticlePage';
 
 export default {
     component: ArticlePage,
+    title: 'pages/ArticlePage',
     parameters: {
         viewport: {
             viewports: INITIAL_VIEWPORTS,

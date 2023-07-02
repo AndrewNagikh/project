@@ -4,10 +4,12 @@ import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice';
 import { profileReducer } from 'entities/Profile';
 import { ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { DeepPartial } from '@reduxjs/toolkit';
+import { articleDetailSliceReducers } from 'entities/Article/model/slice/articleDetailSlice';
 
 const defaultAsyncReducers: ReducersList = {
     loginForm: loginReducer,
     profile: profileReducer,
+    articleDetail: articleDetailSliceReducers,
 };
 
 export const StoreDecorator = (
