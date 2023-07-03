@@ -10,6 +10,7 @@ import { To } from 'history';
 import { NavigateOptions } from 'react-router';
 import { AppDispatch } from 'app/providers/StoreProvider';
 import { ArticleDetailStateSchema } from 'entities/Article';
+import { CommentsSliceSchema } from 'entities/Comment';
 
 export interface StateSchema {
     user: UserSchema;
@@ -18,6 +19,7 @@ export interface StateSchema {
     loginForm?: LoginSchema;
     profile?: ProfileSchema;
     articleDetail?: ArticleDetailStateSchema;
+    comments?: CommentsSliceSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
