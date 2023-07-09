@@ -9,7 +9,8 @@ import ArticleDetailPage from 'pages/ArticalDetailPage';
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
-    PROFILE = 'profile',
+    OWNER_PROFILE = 'profile',
+    USERP_ROFILE = 'user-profile',
     ARTICLE = 'article',
     ARTICLE_DEATILS = 'article-details',
     // last
@@ -19,7 +20,8 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.OWNER_PROFILE]: '/profile',
+    [AppRoutes.USERP_ROFILE]: '/profile/',
     [AppRoutes.ARTICLE]: '/article',
     [AppRoutes.ARTICLE_DEATILS]: '/article/',
     // последний
@@ -35,8 +37,12 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.about,
         element: <AboutPage />,
     },
-    [AppRoutes.PROFILE]: {
+    [AppRoutes.OWNER_PROFILE]: {
         path: RoutePath.profile,
+        element: <ProfilePage />,
+    },
+    [AppRoutes.USERP_ROFILE]: {
+        path: `${RoutePath['user-profile']}:id`,
         element: <ProfilePage />,
     },
     [AppRoutes.ARTICLE]: {

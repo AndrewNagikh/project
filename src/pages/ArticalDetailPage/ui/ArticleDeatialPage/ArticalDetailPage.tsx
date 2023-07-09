@@ -9,6 +9,7 @@ import { getCommentsError, getCommentsIsLoading }
     from 'entities/Comment/model/selectors/commentSelectors';
 import { fetchCommetById } from 'entities/Comment/model/services/fetchCommetById';
 import { commentReducers, getComments } from 'entities/Comment/model/slice/comentsSlice';
+import { AddCommentForm } from 'features/addNewComment';
 import React, { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -50,6 +51,7 @@ const ArticalDetailPage: FC<ArticalDetailPageProps> = (props) => {
             <div className={classNames(cls.ArticalDetailPage, {}, [className])}>
                 <ArticleDetails isLoading={isLoading} error={error} data={articles} />
                 <Text title={t('Комментарии')} className={cls.comentTitle} />
+                <AddCommentForm entityId={id} />
                 <CommentList
                     comments={comments}
                     isLoading={commentsIsLoading}

@@ -6,21 +6,15 @@ import { Profile } from '../../types/profile';
 
 export const fetchProfileData = createAsyncThunk<
     Profile,
-    string | undefined,
+    string,
     ThunkConfig<string>
     >(
         'profile/fetchProfileData',
-        async (userProfileId, thunkApi) => {
+        async (userId, thunkApi) => {
             const { extra, rejectWithValue, getState } = thunkApi;
 
             try {
-                const { id: ownerId } = getUserAuthData(getState()) as User;
-                if (!ownerId && !userProfileId) {
-                    return rejectWithValue('error');
-                }
-                const response = await extra
-                    .api
-                    .get<Profile>(`/profile/${userProfileId || ownerId}`);
+                const response = await extra.api.get<Profile>(`/profile/${userId}`);
                 if (!response.data) {
                     return rejectWithValue('error');
                 }

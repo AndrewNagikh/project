@@ -11,6 +11,7 @@ import { NavigateOptions } from 'react-router';
 import { AppDispatch } from 'app/providers/StoreProvider';
 import { ArticleDetailStateSchema } from 'entities/Article';
 import { CommentsSliceSchema } from 'entities/Comment';
+import { AddCommentFormSchema } from 'features/addNewComment';
 
 export interface StateSchema {
     user: UserSchema;
@@ -20,6 +21,7 @@ export interface StateSchema {
     profile?: ProfileSchema;
     articleDetail?: ArticleDetailStateSchema;
     comments?: CommentsSliceSchema;
+    addCommentForm?: AddCommentFormSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

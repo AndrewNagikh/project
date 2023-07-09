@@ -5,6 +5,7 @@ export interface Comment {
     id: string;
     user?: User;
     text: string;
+    entityId: string;
 }
 
 export interface CommentsSliceSchema extends EntityState<Comment> {

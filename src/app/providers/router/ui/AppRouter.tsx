@@ -9,7 +9,8 @@ const AppRouter = () => (
         {Object.values(routeConfig).map(({ element, path }) => {
             const isAuthRutes = path === RoutePath.profile
             || path === RoutePath.article
-            || path === RoutePath['article-details'];
+            || path === RoutePath['article-details']
+            || path === RoutePath['user-profile'];
             if (isAuthRutes) {
                 return (
                     <Route

@@ -102,6 +102,48 @@
       "text": "some comment 3",
       "articleId": "1",
       "userId": "1"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Шо ето",
+      "id": "YLfB4Od"
+    },
+    {
+      "entityId": "1",
+      "userId": "1",
+      "text": "aga da",
+      "id": "B9Mn020"
+    },
+    {
+      "entityId": "1",
+      "userId": "1",
+      "text": "aga da",
+      "id": "9Z4NSY_"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "asd",
+      "id": "WRdhbKw"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "topchik",
+      "id": "WdcgLi3"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "asd",
+      "id": "Mmrhze8"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "hehehe",
+      "id": "sVr6ZGP"
     }
   ],
   "users": [
@@ -110,7 +152,7 @@
       "username": "admin",
       "password": "123",
       "role": "ADMIN",
-      "avatar": "https://www.discordavatars.com/wp-content/uploads/2020/07/the-witcher-game-avatar-074.jpg"
+      "avatar": "https://www.gannett-cdn.com/presto/2018/12/26/USAT/bd529c02-76c9-45e6-8856-416150a6fc75-John_Wick_3.jpg?crop=1500,2667,x680,y0"
     },
     {
       "id": "2",
@@ -120,14 +162,28 @@
       "avatar": "https://www.discordavatars.com/wp-content/uploads/2020/07/the-witcher-game-avatar-058.jpg"
     }
   ],
-  "profile": {
-    "first": "Гераль",
-    "lastname": "Ривийсикй",
-    "age": 465,
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin213",
-    "avatar": "https://www.discordavatars.com/wp-content/uploads/2020/07/the-witcher-game-avatar-074.jpg"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Джордани",
+      "lastname": "Джованович",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://www.gannett-cdn.com/presto/2018/12/26/USAT/bd529c02-76c9-45e6-8856-416150a6fc75-John_Wick_3.jpg?crop=1500,2667,x680,y0"
+    },
+    {
+      "id": "2",
+      "first": "Цири",
+      "lastname": "Цинтрийская",
+      "age": 465,
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin213",
+      "avatar": "https://www.discordavatars.com/wp-content/uploads/2020/07/the-witcher-game-avatar-074.jpg"
+    }
+  ]
 }

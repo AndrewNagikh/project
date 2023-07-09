@@ -17,6 +17,7 @@ import { useCallback, useEffect } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { getProfileForm } from 'entities/Profile/model/selectors/getProfileForm/getProfileForm';
+import { useParams } from 'react-router-dom';
 import ProfilePageHeader from './ProfilePageHeader/ProfilePageHeader';
 
 const reducers: ReducersList = {
@@ -30,6 +31,7 @@ interface ProfilePageProps {
 const ProfilePage = ({ className }: ProfilePageProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
+    const { id } = useParams();
     const data = useSelector(getProfileForm);
     const isLoading = useSelector(getProfileIsLoading);
     const error = useSelector(getProfileError);
@@ -44,7 +46,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
     useEffect(() => {
         if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData());
+            dispatch(fetchProfileData(id));
         }
     }, [dispatch]);
 
