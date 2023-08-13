@@ -14,11 +14,7 @@
     border: 1px solid var(--primary-color);
 }
 
-option.option {
+.option {
     color: var(--inverted-primary-color);
     background: var(--inverted-bg-color);
-}
-
-.disabled {
-    opacity: 0.7;
 }

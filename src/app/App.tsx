@@ -5,13 +5,12 @@ import { AppRouter } from 'app/providers/router';
 import { Navbar } from 'widgets/Navbar';
 import { Sidebar } from 'widgets/Sidebar';
 import { useDispatch, useSelector } from 'react-redux';
-import { userActions } from 'entities/User';
-import { StateSchema } from './providers/StoreProvider';
+import { getUserInited, userActions } from 'entities/User';
 
 function App() {
     const { theme } = useTheme();
     const dispatch = useDispatch();
-    const inited = useSelector((selector: StateSchema) => selector.user?._init);
+    const inited = useSelector(getUserInited);
 
     useEffect(() => {
         dispatch(userActions.initAuthData());

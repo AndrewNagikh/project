@@ -1,13 +1,13 @@
+import { userActions } from 'entities/User';
 import { TestAsyncThunk } from 'shared/lib/tests/TestAsyncThunk/TestAsyncThunk';
 import { Country } from 'entities/Country';
 import { Currency } from 'entities/Currency';
-import { UserRoles } from 'entities/User/model/types/user';
 import { fetchProfileData } from './fetchProfileData';
 
 const data = {
     username: 'admin',
     age: 22,
-    country: Country.ARMENIA,
+    country: Country.Ukraine,
     lastname: 'ulbi tv',
     first: 'asd',
     city: 'asf',
@@ -16,16 +16,7 @@ const data = {
 
 describe('fetchProfileData.test', () => {
     test('success', async () => {
-        const thunk = new TestAsyncThunk(fetchProfileData, {
-            user: {
-                authData: {
-                    id: '1',
-                    username: '123',
-                    avatar: '123',
-                    role: UserRoles.USER,
-                },
-            },
-        });
+        const thunk = new TestAsyncThunk(fetchProfileData);
         thunk.api.get.mockReturnValue(Promise.resolve({ data }));
 
         const result = await thunk.callThunk('1');

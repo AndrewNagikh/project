@@ -1,20 +1,26 @@
-import { ComponentStory } from '@storybook/react';
 import React from 'react';
-
-import Avatar from './Avatar';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Avatar } from 'shared/ui/Avatar/Avatar';
+import AvatarImg from './storybook.jpg';
 
 export default {
+    title: 'shared/Avatar',
     component: Avatar,
-    title: 'shared/Avater',
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof Avatar>;
+
+const Template: ComponentStory<typeof Avatar> = (args) => <Avatar {...args} />;
+
+export const Primary = Template.bind({});
+Primary.args = {
+    size: 150,
+    src: AvatarImg,
 };
 
-const Template: ComponentStory<typeof Avatar> = (args) => (
-    <Avatar {...args} />
-);
-
-export const AvatarTemplate = Template.bind({});
-AvatarTemplate.args = {
-    size: 150,
-    // eslint-disable-next-line max-len
-    src: 'https://musicart.xboxlive.com/7/4d4d6500-0000-0000-0000-000000000002/504/image.jpg?w=1920&h=1080',
+export const Small = Template.bind({});
+Small.args = {
+    size: 50,
+    src: AvatarImg,
 };

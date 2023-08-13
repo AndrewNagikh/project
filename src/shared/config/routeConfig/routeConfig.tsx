@@ -3,16 +3,19 @@ import { MainPage } from 'pages/MainPage';
 import { AboutPage } from 'pages/AboutPage';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { ProfilePage } from 'pages/ProfilePage';
-import ArticlePage from 'pages/ArticlePage';
-import ArticleDetailPage from 'pages/ArticalDetailPage';
+import { ArticlesPage } from 'pages/ArticlesPage';
+import { ArticleDetailsPage } from 'pages/ArticleDetailsPage';
+
+export type AppRoutesProps = RouteProps & {
+    authOnly?: boolean;
+}
 
 export enum AppRoutes {
     MAIN = 'main',
     ABOUT = 'about',
-    OWNER_PROFILE = 'profile',
-    USERP_ROFILE = 'user-profile',
-    ARTICLE = 'article',
-    ARTICLE_DEATILS = 'article-details',
+    PROFILE = 'profile',
+    ARTICLES = 'articles',
+    ARTICLE_DETAILS = 'article_details',
     // last
     NOT_FOUND = 'not_found',
 }
@@ -20,15 +23,14 @@ export enum AppRoutes {
 export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.ABOUT]: '/about',
-    [AppRoutes.OWNER_PROFILE]: '/profile',
-    [AppRoutes.USERP_ROFILE]: '/profile/',
-    [AppRoutes.ARTICLE]: '/article',
-    [AppRoutes.ARTICLE_DEATILS]: '/article/',
+    [AppRoutes.PROFILE]: '/profile/', // + :id
+    [AppRoutes.ARTICLES]: '/articles',
+    [AppRoutes.ARTICLE_DETAILS]: '/articles/', // + :id
     // последний
     [AppRoutes.NOT_FOUND]: '*',
 };
 
-export const routeConfig: Record<AppRoutes, RouteProps> = {
+export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
         element: <MainPage />,
@@ -37,21 +39,20 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
         path: RoutePath.about,
         element: <AboutPage />,
     },
-    [AppRoutes.OWNER_PROFILE]: {
-        path: RoutePath.profile,
+    [AppRoutes.PROFILE]: {
+        path: `${RoutePath.profile}:id`,
         element: <ProfilePage />,
+        authOnly: true,
     },
-    [AppRoutes.USERP_ROFILE]: {
-        path: `${RoutePath['user-profile']}:id`,
-        element: <ProfilePage />,
+    [AppRoutes.ARTICLES]: {
+        path: RoutePath.articles,
+        element: <ArticlesPage />,
+        authOnly: true,
     },
-    [AppRoutes.ARTICLE]: {
-        path: RoutePath.article,
-        element: <ArticlePage />,
-    },
-    [AppRoutes.ARTICLE_DEATILS]: {
-        path: `${RoutePath['article-details']}:id`,
-        element: <ArticleDetailPage />,
+    [AppRoutes.ARTICLE_DETAILS]: {
+        path: `${RoutePath.article_details}:id`,
+        element: <ArticleDetailsPage />,
+        authOnly: true,
     },
     // last
     [AppRoutes.NOT_FOUND]: {

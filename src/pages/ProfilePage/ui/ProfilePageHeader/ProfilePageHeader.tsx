@@ -1,38 +1,51 @@
-import {
-    getProfileData, getReadOnly, profileActions, updateProfileData,
-} from 'entities/Profile';
-import { getUserAuthData } from 'entities/User';
-import React, { FC, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { Text } from 'shared/ui/Text/Text';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+    getProfileData, getProfileReadonly, profileActions, updateProfileData,
+} from 'entities/Profile';
+import { useCallback } from 'react';
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch';
+import { getUserAuthData } from 'entities/User';
 import cls from './ProfilePageHeader.module.scss';
 
-const ProfilePageHeader: FC = () => {
+interface ProfilePageHeaderProps {
+    className?: string;
+}
+
+export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
+    const {
+        className,
+    } = props;
+
     const { t } = useTranslation('profile');
-    const readOnly = useSelector(getReadOnly);
+    const authData = useSelector(getUserAuthData);
+    const profileData = useSelector(getProfileData);
+    const canEdit = authData?.id === profileData?.id;
+    const readonly = useSelector(getProfileReadonly);
     const dispatch = useAppDispatch();
-    const userId = useSelector(getUserAuthData)?.id;
-    const profileId = useSelector(getProfileData)?.id;
+
     const onEdit = useCallback(() => {
-        dispatch(profileActions.setReadOnly(false));
+        dispatch(profileActions.setReadonly(false));
     }, [dispatch]);
+
     const onCancelEdit = useCallback(() => {
         dispatch(profileActions.cancelEdit());
     }, [dispatch]);
-    const onSaveProfile = useCallback(() => {
+
+    const onSave = useCallback(() => {
         dispatch(updateProfileData());
     }, [dispatch]);
+
     return (
-        <div className={classNames(cls.ProfilePageHeader)}>
+        <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
             <Text title={t('Профиль')} />
-            {userId === profileId && (
-                <div className={cls.btnWrapper}>
-                    {
-                        readOnly ? (
+            {canEdit && (
+                <div className={cls.btnsWrapper}>
+                    {readonly
+                        ? (
                             <Button
                                 className={cls.editBtn}
                                 theme={ButtonTheme.OUTLINE}
@@ -40,29 +53,27 @@ const ProfilePageHeader: FC = () => {
                             >
                                 {t('Редактировать')}
                             </Button>
-                        ) : (
+                        )
+                        : (
                             <>
                                 <Button
                                     className={cls.editBtn}
-                                    theme={ButtonTheme.OUTLINE}
+                                    theme={ButtonTheme.OUTLINE_RED}
                                     onClick={onCancelEdit}
                                 >
                                     {t('Отменить')}
                                 </Button>
                                 <Button
-                                    className={cls.editBtn}
-                                    theme={ButtonTheme.BACKGROUND_INVERTED}
-                                    onClick={onSaveProfile}
+                                    className={cls.saveBtn}
+                                    theme={ButtonTheme.OUTLINE}
+                                    onClick={onSave}
                                 >
                                     {t('Сохранить')}
                                 </Button>
                             </>
-                        )
-                    }
+                        )}
                 </div>
             )}
         </div>
     );
 };
-
-export default ProfilePageHeader;

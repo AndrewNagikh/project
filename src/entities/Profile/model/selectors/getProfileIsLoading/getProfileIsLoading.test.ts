@@ -1,19 +1,14 @@
-import { DeepPartial } from '@reduxjs/toolkit';
 import { StateSchema } from 'app/providers/StoreProvider';
-import { Country } from 'entities/Country';
-import { Currency } from 'entities/Currency';
 import { getProfileIsLoading } from './getProfileIsLoading';
 
 describe('getProfileIsLoading.test', () => {
-    test('should return error', () => {
+    test('should work with filled state', () => {
         const state: DeepPartial<StateSchema> = {
             profile: {
-                error: '123',
-                isLoading: false,
-                readonly: false,
+                isLoading: true,
             },
         };
-        expect(getProfileIsLoading(state as StateSchema)).toEqual(false);
+        expect(getProfileIsLoading(state as StateSchema)).toEqual(true);
     });
     test('should work with empty state', () => {
         const state: DeepPartial<StateSchema> = {};

@@ -1,30 +1,29 @@
-import React, { FC, memo, ReactNode } from 'react';
-import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button } from '../Button/Button';
+import { memo, useCallback } from 'react';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import CopyIcon from 'shared/assets/icons/copy-20-20.svg';
 import cls from './Code.module.scss';
 
 interface CodeProps {
     className?: string;
-    children: ReactNode;
+    text: string;
 }
 
-const Code: FC<CodeProps> = memo((props: CodeProps) => {
-    const { className, children } = props;
-    const { t } = useTranslation('article');
-    const copy = () => {
-        navigator.clipboard.writeText(children as string).then(() => alert(t('Скопировано')));
-    };
+export const Code = memo((props: CodeProps) => {
+    const { className, text } = props;
+
+    const onCopy = useCallback(() => {
+        navigator.clipboard.writeText(text);
+    }, [text]);
+
     return (
         <pre className={classNames(cls.Code, {}, [className])}>
-            <Button className={cls.copyBtn} onClick={copy}>
-                {t('Копировать')}
+            <Button onClick={onCopy} className={cls.copyBtn} theme={ButtonTheme.CLEAR}>
+                <CopyIcon className={cls.copyIcon} />
             </Button>
             <code>
-                {children}
+                {text}
             </code>
         </pre>
     );
 });
-
-export default Code;

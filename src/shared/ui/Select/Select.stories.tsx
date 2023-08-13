@@ -1,21 +1,22 @@
-/* eslint-disable max-len */
-
-import { ComponentStory } from '@storybook/react';
 import React from 'react';
-
-import Select from './Select';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Select } from 'shared/ui/Select/Select';
 
 export default {
-    component: Select,
     title: 'shared/Select',
-};
+    component: Select,
+    argTypes: {
+        backgroundColor: { control: 'color' },
+    },
+} as ComponentMeta<typeof Select>;
 
-const Template: ComponentStory<typeof Select> = (args) => (
-    <Select {...args} />
-);
+const Template: ComponentStory<typeof Select> = (args) => <Select {...args} />;
 
-export const SelectDesc = Template.bind({});
-SelectDesc.args = {
-    label: 'Test',
-    options: [{ value: '123', label: '123' }, { value: '123', label: '123' }, { value: '123', label: '123' }],
+export const Primary = Template.bind({});
+Primary.args = {
+    label: 'Укажите значение',
+    options: [
+        { value: '123', content: 'Первый пункт' },
+        { value: '1234', content: 'Второй пункт' },
+    ],
 };

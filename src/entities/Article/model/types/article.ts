@@ -1,45 +1,54 @@
-export enum BlockType {
-    TEXT = 'TEXT',
-    IMAGE = 'IMAGE',
+import { User } from 'entities/User';
+
+export enum ArticleBlockType {
     CODE = 'CODE',
+    IMAGE = 'IMAGE',
+    TEXT = 'TEXT',
 }
 
-export interface BlockBase {
+export interface ArticleBlockBase {
     id: string;
-    type: BlockType;
+    type: ArticleBlockType;
 }
 
-export interface TextBlock extends BlockBase {
-    type: BlockType.TEXT;
-    title?: string;
-    paragraphs: Array<string>;
+export interface ArticleCodeBlock extends ArticleBlockBase {
+    type: ArticleBlockType.CODE;
+    code: string;
 }
 
-export interface ImageBlock extends BlockBase {
-    type: BlockType.IMAGE;
+export interface ArticleImageBlock extends ArticleBlockBase {
+    type: ArticleBlockType.IMAGE;
     src: string;
     title: string;
 }
 
-export interface CodeBlock extends BlockBase {
-    type: BlockType.CODE;
-    code: string;
+export interface ArticleTextBlock extends ArticleBlockBase {
+    type: ArticleBlockType.TEXT;
+    paragraphs: string[];
+    title?: string;
 }
 
-export type Block = CodeBlock | TextBlock | ImageBlock;
+export type ArticleBlock = ArticleCodeBlock | ArticleImageBlock | ArticleTextBlock;
 
 export enum ArticleType {
     IT = 'IT',
-    NEWS = 'News',
+    SCIENCE = 'SCIENCE',
+    ECONOMICS = 'ECONOMICS'
+}
+
+export enum ArticleView {
+    BIG = 'BIG',
+    SMALL = 'SMALL',
 }
 
 export interface Article {
     id: string;
     title: string;
+    user: User;
     subtitle: string;
     img: string;
-    wievs: number;
+    views: number;
     createdAt: string;
-    type: Array<string>;
-    blocks: Array<Block>;
+    type: ArticleType[];
+    blocks: ArticleBlock[];
 }

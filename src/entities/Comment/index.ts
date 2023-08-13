@@ -1,7 +1,2 @@
-import CommentItem from './ui/CommentItem/CommentItem';
-import CommentList from './ui/CommentList/CommentList';
-import { CommentsSliceSchema } from './model/types/comment';
-
-export {
-    CommentItem, CommentList, CommentsSliceSchema,
-};
+export { CommentList } from './ui/CommentList/CommentList';
+export { Comment } from './model/types/comment';

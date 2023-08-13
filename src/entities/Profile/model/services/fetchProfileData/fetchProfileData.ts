@@ -1,29 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AxiosInstance } from 'axios';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { getUserAuthData, User } from 'entities/User';
 import { Profile } from '../../types/profile';
 
 export const fetchProfileData = createAsyncThunk<
     Profile,
-    string | undefined,
+    string,
     ThunkConfig<string>
     >(
         'profile/fetchProfileData',
-        async (userProfileId, thunkApi) => {
-            const { extra, rejectWithValue, getState } = thunkApi;
+        async (profileId, thunkApi) => {
+            const { extra, rejectWithValue } = thunkApi;
 
             try {
-                const { id: ownerId } = getUserAuthData(getState()) as User;
-                if (!ownerId && !userProfileId) {
-                    return rejectWithValue('error');
-                }
-                const response = await extra
-                    .api
-                    .get<Profile>(`/profile/${userProfileId || ownerId}`);
+                const response = await extra.api.get<Profile>(`/profile/${profileId}`);
+
                 if (!response.data) {
-                    return rejectWithValue('error');
+                    throw new Error();
                 }
+
                 return response.data;
             } catch (e) {
                 console.log(e);
