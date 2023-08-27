@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import { FC, useEffect } from 'react';
 import { useDispatch, useStore } from 'react-redux';
 import { ReduxStoreWithManager, StateSchemaKey } from 'app/providers/StoreProvider/config/StateSchema';
@@ -24,8 +23,12 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = (props) => {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        const mountedReducers = store.reducerManager.getMountedReducers();
+
         Object.entries(reducers).forEach(([name, reducer]) => {
-            if (!store.reducerManager.getReducerMap()[name as StateSchemaKey]) {
+            const mounted = mountedReducers[name as StateSchemaKey];
+            // Добавляем новый редюсер только если его нет
+            if (!mounted) {
                 store.reducerManager.add(name as StateSchemaKey, reducer);
                 dispatch({ type: `@INIT ${name} reducer` });
             }

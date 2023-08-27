@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { ReactNode } from 'react';
 import { Provider } from 'react-redux';
 import { createReduxStore } from 'app/providers/StoreProvider/config/store';
@@ -26,6 +25,8 @@ export const StoreProvider = (props: StoreProviderProps) => {
         asyncReducers as ReducersMapObject<StateSchema>,
         // navigate,
     );
+
+    console.log('RENDER');
 
     return (
         <Provider store={store}>
