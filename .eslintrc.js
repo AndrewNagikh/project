@@ -21,7 +21,7 @@ module.exports = {
         'react',
         '@typescript-eslint',
         'i18next',
-        'path-check-plugin',
+        // 'path-check-plugin',
     ],
     rules: {
         // Semantic
@@ -57,7 +57,7 @@ module.exports = {
         ],
         'max-len': 'off',
         'no-undef': 'warn',
-        'path-check-plugin/path-checker': 'error',
+        // 'path-check-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

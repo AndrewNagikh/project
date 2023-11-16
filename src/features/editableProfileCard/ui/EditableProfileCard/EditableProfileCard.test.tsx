@@ -61,16 +61,16 @@ describe('features/EditableProfileCard', () => {
         expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue('admin');
     });
 
-    // test('Должна появиться ошибка', async () => {
-    //     componentRender(<EditableProfileCard id="1" />, options);
-    //     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
+    test('Должна появиться ошибка', async () => {
+        componentRender(<EditableProfileCard id="1" />, options);
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'));
 
-    //     await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
+        await userEvent.clear(screen.getByTestId('ProfileCard.firstname'));
 
-    //     await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
+        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'));
 
-    //     expect(screen.getByTestId('EditableProfileCard.Error.Paragraph')).toBeInTheDocument();
-    // });
+        expect(screen.getByTestId('EditableProfileCard.Error.Paragraph')).toBeInTheDocument();
+    });
 
     test('Если нет ошибок валидации, то на сервер должен уйти PUT запрос', async () => {
         const mockPutReq = jest.spyOn($api, 'put');
